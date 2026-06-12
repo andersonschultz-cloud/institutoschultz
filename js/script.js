@@ -357,4 +357,30 @@
 
     start();
   }
+   /* ============ Galeria automática (is01 → is50) ============ */
+  const galleryTrack = document.getElementById("galleryTrack");
+  if (galleryTrack) {
+    const TOTAL = 50;          // quantidade de imagens
+    const EXT = "jpg";         // ⚠️ ajuste se suas imagens forem .png, .jpeg ou .webp
+    const PATH = "assets/images/";
+
+    const frag = document.createDocumentFragment();
+
+    // Duplicamos a sequência (2x) para o loop infinito ser contínuo, sem "salto"
+    for (let pass = 0; pass < 2; pass++) {
+      for (let i = 1; i <= TOTAL; i++) {
+        const num = String(i).padStart(2, "0"); // is01, is02 ... is50
+        const img = document.createElement("img");
+        img.src = `${PATH}is${num}.${EXT}`;
+        img.alt = `Instituto Schultz — imagem ${num}`;
+        img.className = "gallery__item";
+        img.loading = "lazy";
+        img.decoding = "async";
+        // Se alguma imagem não existir, ela some sem quebrar o layout
+        img.addEventListener("error", () => img.remove());
+        frag.appendChild(img);
+      }
+    }
+    galleryTrack.appendChild(frag);
+  }
 })();
