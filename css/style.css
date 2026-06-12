@@ -1103,3 +1103,75 @@ p + p { margin-top: 1rem; }
   .reveal { opacity: 1; transform: none; }
   .hero__canvas { display: none; }
 }
+/* ============ Google Reviews ============ */
+.google-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.google-badge__stars { color: #fbbc04; font-size: 1rem; letter-spacing: 2px; }
+.google-badge__text {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.testimonial__stars {
+  display: block;
+  color: #fbbc04;
+  font-size: 1.05rem;
+  letter-spacing: 3px;
+  margin-bottom: 0.9rem;
+}
+
+.testimonials__google-link { text-align: center; margin-top: 1.6rem; }
+.testimonials__google-link a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--cyan-300);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.testimonials__google-link a:hover { color: #fff; }
+
+/* ============ Galeria automática ============ */
+.gallery {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.gallery__track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: galleryScroll 120s linear infinite;
+}
+.gallery:hover .gallery__track { animation-play-state: paused; }
+
+.gallery__item {
+  flex: 0 0 auto;
+  width: clamp(200px, 28vw, 300px);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@keyframes galleryScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__track { animation: none; }
+  .gallery { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+}
