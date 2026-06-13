@@ -1175,3 +1175,253 @@ p + p { margin-top: 1rem; }
   .gallery__track { animation: none; }
   .gallery { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
 }
+/* ============================================================
+   ADIÇÕES — Instituto Schultz
+   Cole no final do style.css existente
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   #1 — Formação acadêmica: remove marcador preto duplicado
+   ---------------------------------------------------------- */
+.credentials__list {
+  list-style: none;       /* remove o bullet preto nativo */
+  margin: 0;
+  padding: 0;
+}
+
+/* Mantém/garante a bolinha azul personalizada já existente */
+.credentials__list li {
+  list-style: none;       /* reforça para casos de herança */
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.45rem;
+  line-height: 1.55;
+}
+
+.credentials__list li::before {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clr-accent, #2563EB); /* azul do tema — ajuste se necessário */
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   #2 — Stat internacional com bandeiras
+   ---------------------------------------------------------- */
+.stat--international {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat__flags {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat__flag {
+  font-size: 1.75rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.25));
+  transition: transform .2s ease;
+}
+
+.stat__flag:hover {
+  transform: scale(1.15);
+}
+
+/* ----------------------------------------------------------
+   #3 — Cards de conteúdo com imagens reais
+   ---------------------------------------------------------- */
+
+/* Substitui os gradientes decorativos pelas imagens reais */
+.content-card__media--a {
+  background-image: url('../assets/images/Autoconhecimento.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.content-card__media--b {
+  background-image: url('../assets/images/Carreira.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.content-card__media--c {
+  background-image: url('../assets/images/Consciencia.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/*
+  Garante overlay escuro sobre as imagens para manter
+  legibilidade caso o CSS original use pseudo-elemento.
+  Se o seu style.css já tiver ::after no .content-card__media,
+  este bloco reforça sem conflito.
+*/
+.content-card__media {
+  position: relative;
+}
+
+.content-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 20, 40, 0.30) 0%,
+    rgba(10, 20, 40, 0.55) 100%
+  );
+  border-radius: inherit;
+}
+
+/* ----------------------------------------------------------
+   #4 & #5 — Canais de contato: ícones + novos links
+   ---------------------------------------------------------- */
+
+/* Layout de cada item de canal */
+.contact__channels li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  transition: background .2s;
+}
+
+.contact__channels li:last-child {
+  border-bottom: none;
+}
+
+/* Wrapper do ícone */
+.contact__channel-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  color: var(--clr-accent, #2563EB);
+  transition: background .25s, color .25s, transform .25s;
+}
+
+.contact__channels li:hover .contact__channel-icon {
+  background: var(--clr-accent, #2563EB);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* WhatsApp — cor própria no hover */
+.contact__channel-icon--whatsapp {
+  color: #25D366;
+}
+
+.contact__channels li:hover .contact__channel-icon--whatsapp {
+  background: #25D366;
+  color: #fff;
+}
+
+/* Instagram — gradiente no hover */
+.contact__channel-icon--instagram {
+  color: #E1306C;
+}
+
+.contact__channels li:hover .contact__channel-icon--instagram {
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  color: #fff;
+  border: none;
+}
+
+/* Texto dentro do canal */
+.contact__channels li > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contact__channels li strong {
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  opacity: .55;
+  line-height: 1;
+}
+
+.contact__channels li span,
+.contact__channels li a {
+  font-size: .95rem;
+  line-height: 1.4;
+}
+
+/* Links dos canais */
+.contact__channel-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color .2s, opacity .2s;
+  word-break: break-all;
+}
+
+.contact__channel-link:hover {
+  opacity: .75;
+  text-decoration: underline;
+}
+
+/* WhatsApp — destaque especial no link */
+.contact__channel-link--whatsapp {
+  color: #25D366;
+  font-weight: 600;
+}
+
+.contact__channel-link--whatsapp:hover {
+  opacity: 1;
+  color: #1da851;
+}
+
+/* Instagram — destaque especial no link */
+.contact__channel-link--instagram {
+  color: #E1306C;
+  font-weight: 600;
+}
+
+.contact__channel-link--instagram:hover {
+  opacity: 1;
+  color: #c13584;
+}
+
+/* ----------------------------------------------------------
+   Responsividade dos novos elementos
+   ---------------------------------------------------------- */
+@media (max-width: 600px) {
+  .stat__flag {
+    font-size: 1.4rem;
+  }
+
+  .contact__channel-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+
+  .contact__channels li {
+    gap: 0.65rem;
+    padding: 0.6rem 0;
+  }
+
+  .contact__channel-link--whatsapp,
+  .contact__channel-link--instagram {
+    font-size: .9rem;
+  }
+}
