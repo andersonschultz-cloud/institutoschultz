@@ -6,7 +6,7 @@
   <title>Instituto Schultz — Desenvolvimento Humano, Consciência e Transformação</title>
 
   <!-- SEO -->
-  <meta name="description" content="O Instituto Schultz une ciência do comportamento, terapias integrativas e expansão da consciência para transformar trajetórias. Atendimentos, mentorias e programas de desenvolvimento humano — presenciais e on-line para todo o Brasil." />
+  <meta name="description" content="O Instituto Schultz une ciência do comportamento, terapias integrativas e expansão da consciência para transformar trajetórias. Atendimentos, mentorias e programas de desenvolvimento humano — presenciais e on-line para o Brasil, Estados Unidos, Portugal e Espanha." />
   <meta name="keywords" content="desenvolvimento humano, autoconhecimento, terapia, mentoria, hipnoterapia, PNL, coaching, consciência, Instituto Schultz, Fernanda Schultz" />
   <meta name="author" content="Instituto Schultz" />
   <meta name="robots" content="index, follow" />
@@ -46,14 +46,14 @@
     "name": "Instituto Schultz",
     "url": "https://www.institutoschultz.com/",
     "logo": "https://www.institutoschultz.com/assets/images/logo.png",
-    "description": "Instituto dedicado ao desenvolvimento humano, autoconhecimento e expansão da consciência, com atendimentos terapêuticos, mentorias, treinamentos e programas — presenciais e on-line para todo o Brasil.",
-    "areaServed": "BR",
+    "description": "Instituto dedicado ao desenvolvimento humano, autoconhecimento e expansão da consciência, com atendimentos terapêuticos, mentorias, treinamentos e programas — presenciais e on-line para o Brasil, Estados Unidos, Portugal e Espanha.",
+    "areaServed": ["BR", "US", "PT", "ES"],
     "founder": {
       "@type": "Person",
       "name": "Fernanda Schultz",
       "jobTitle": "Fundadora, Terapeuta e Mentora em Desenvolvimento Humano"
     },
-    "sameAs": []
+    "sameAs": ["https://www.instagram.com/institutoschultz/"]
   }
   </script>
 </head>
@@ -107,7 +107,8 @@
             <a href="#contato" class="btn btn--primary">Agendar uma conversa</a>
             <a href="#metodologia" class="btn btn--ghost">Conhecer a metodologia</a>
           </div>
-          <p class="hero__note">Atendimentos presenciais e on-line para todo o Brasil</p>
+          <!-- ✅ ALTERAÇÃO #2 — Alcance internacional na Hero -->
+          <p class="hero__note">Atendimentos presenciais e on-line para clientes no Brasil, Estados Unidos, Portugal e Espanha</p>
         </div>
       </div>
 
@@ -129,9 +130,16 @@
           <span class="stat__number" data-count="9000" data-suffix="+">0</span>
           <span class="stat__label">horas de atendimentos realizados</span>
         </div>
-        <div class="stat reveal">
-          <span class="stat__number">BR</span>
-          <span class="stat__label">presencial e on-line em todo o país</span>
+
+        <!-- ✅ ALTERAÇÃO #2 — Stat de alcance internacional -->
+        <div class="stat stat--international reveal">
+          <div class="stat__flags" aria-hidden="true">
+            <span class="stat__flag" title="Brasil">🇧🇷</span>
+            <span class="stat__flag" title="Estados Unidos">🇺🇸</span>
+            <span class="stat__flag" title="Portugal">🇵🇹</span>
+            <span class="stat__flag" title="Espanha">🇪🇸</span>
+          </div>
+          <span class="stat__label">Atendimentos presenciais e on-line no Brasil, Estados Unidos, Portugal e Espanha</span>
         </div>
       </div>
     </section>
@@ -141,7 +149,7 @@
       <div class="container about__grid">
         <div class="about__visual reveal" aria-hidden="true">
           <div class="about__card glass">
-            <p class="about__quote">“Menos ruído.<br />Mais essência.<br /><em>Mais você.</em>”</p>
+            <p class="about__quote">"Menos ruído.<br />Mais essência.<br /><em>Mais você.</em>"</p>
             <p class="about__quote-label">Filosofia Instituto Schultz</p>
           </div>
           <div class="about__orb"></div>
@@ -307,8 +315,9 @@
           <li class="benefit glass reveal">
             <span class="benefit__check" aria-hidden="true">✓</span>
             <div>
-              <h3>Onde você estiver</h3>
-              <p>Atendimentos presenciais e on-line, com a mesma profundidade e cuidado.</p>
+              <h3>Presença internacional</h3>
+              <!-- ✅ ALTERAÇÃO #2 — Benefício atualizado -->
+              <p>Atendimentos presenciais e on-line no Brasil, Estados Unidos, Portugal e Espanha.</p>
             </div>
           </li>
         </ul>
@@ -332,12 +341,13 @@
             Em paralelo, fundou o Instituto Schultz e desenvolveu uma metodologia própria que
             integra conhecimento técnico, inteligência emocional, comportamento humano, terapias
             integrativas e expansão da consciência — já são mais de 9.000 horas de atendimentos
-            transformando trajetórias em todo o Brasil.
+            transformando trajetórias no Brasil, Estados Unidos, Portugal e Espanha.
           </p>
 
+          <!-- ✅ ALTERAÇÃO #1 — Classe founder__credentials--clean adicionada para remover list-style -->
           <details class="founder__credentials reveal">
             <summary>Formação acadêmica e especializações</summary>
-            <ul>
+            <ul class="credentials__list">
               <li>Graduação em Administração com ênfase em Comércio Exterior</li>
               <li>MBA em Psicologia Organizacional — Universidade Ulbra</li>
               <li>MBA em Gestão de Projetos — Universidade Positivo</li>
@@ -365,7 +375,7 @@
       </div>
     </section>
 
-<!-- ============ DEPOIMENTOS (GOOGLE REVIEWS) ============ -->
+    <!-- ============ DEPOIMENTOS (GOOGLE REVIEWS) ============ -->
     <section class="section section--dark testimonials" id="depoimentos">
       <div class="container">
         <div class="section__head">
@@ -381,39 +391,34 @@
         <div class="slider reveal" id="testimonialSlider" aria-roledescription="carrossel" aria-label="Avaliações do Google">
           <div class="slider__track" id="sliderTrack">
 
-            <!-- ▼▼▼ COLE AQUI O TEXTO DA AVALIAÇÃO 1 DO GOOGLE ▼▼▼ -->
             <blockquote class="testimonial glass-dark" aria-roledescription="slide">
               <span class="testimonial__stars" aria-hidden="true">★★★★★</span>
-              <p>“Fernanda Schultz é uma profissional extremamente qualificada. Através da consultoria empresarial, sai do CLT, montei minha empresa do zero e em 6 meses cobri financeiramente 15 anos de experiência corporativa. Gratidão a todo processo e acompanhamento realizado. Tem sido uma jornada incrível 🙏”</p>
-              <footer><strong>[Marlova Giacomelli]</strong><span>Avaliação no Google</span></footer>
+              <p>"Fernanda Schultz é uma profissional extremamente qualificada. Através da consultoria empresarial, sai do CLT, montei minha empresa do zero e em 6 meses cobri financeiramente 15 anos de experiência corporativa. Gratidão a todo processo e acompanhamento realizado. Tem sido uma jornada incrível 🙏"</p>
+              <footer><strong>Marlova Giacomelli</strong><span>Avaliação no Google</span></footer>
             </blockquote>
 
-            <!-- ▼▼▼ AVALIAÇÃO 2 ▼▼▼ -->
             <blockquote class="testimonial glass-dark" aria-roledescription="slide">
               <span class="testimonial__stars" aria-hidden="true">★★★★★</span>
-              <p>“Voltar a contar com a mentoria da Fernanda foi uma decisão muito importante. Sua escuta atenta e provocações certeiras ajudam a trazer clareza, fortalecer a tomada de decisão e elevar o nível da gestão. A cada encontro, saio mais estratégica, confiante e preparada para os desafios da liderança. Recomendo com convicção: sua mentoria é um suporte valioso para quem busca crescer e liderar com mais equilíbrio e eficácia”</p>
-              <footer><strong>[Elizandra Andrade]</strong><span>Avaliação no Google</span></footer>
+              <p>"Voltar a contar com a mentoria da Fernanda foi uma decisão muito importante. Sua escuta atenta e provocações certeiras ajudam a trazer clareza, fortalecer a tomada de decisão e elevar o nível da gestão. A cada encontro, saio mais estratégica, confiante e preparada para os desafios da liderança. Recomendo com convicção: sua mentoria é um suporte valioso para quem busca crescer e liderar com mais equilíbrio e eficácia."</p>
+              <footer><strong>Elizandra Andrade</strong><span>Avaliação no Google</span></footer>
             </blockquote>
 
-            <!-- ▼▼▼ AVALIAÇÃO 3 ▼▼▼ -->
             <blockquote class="testimonial glass-dark" aria-roledescription="slide">
               <span class="testimonial__stars" aria-hidden="true">★★★★★</span>
-              <p>“A Fernanda é um ser de muita luz, estamos em processo desde 2016 e eu evolui muito com ela, hoje eu posso dizer que ela foi fundamental pra que eu percebesse a evolução e aprendesse a me blindar. Ela é extremamente profissional e você nunca irá se sentir inseguro em abrir seu coração pra ela.”</p>
-              <footer><strong>[Naiana Corrêa]</strong><span>Avaliação no Google</span></footer>
+              <p>"A Fernanda é um ser de muita luz, estamos em processo desde 2016 e eu evolui muito com ela, hoje eu posso dizer que ela foi fundamental pra que eu percebesse a evolução e aprendesse a me blindar. Ela é extremamente profissional e você nunca irá se sentir inseguro em abrir seu coração pra ela."</p>
+              <footer><strong>Naiana Corrêa</strong><span>Avaliação no Google</span></footer>
             </blockquote>
 
-            <!-- ▼▼▼ AVALIAÇÃO 4 ▼▼▼ -->
             <blockquote class="testimonial glass-dark" aria-roledescription="slide">
               <span class="testimonial__stars" aria-hidden="true">★★★★★</span>
-              <p>“Já fiz 2 mentorias com a Fernanda Schultz, e já perdi a conta de quantas pessoas indiquei. Desejo que todo o ser humano que visualizar essa mensagem, possa passar pela experiência de sentar no sofá do Instituto e ter sua vida transformada, é simplesmente mágico! Já passaram 5 anos e eu admiro cada vez mais. Levo a gratidão eterna por Deus ter colocado a Fe na minha vida!”</p>
-              <footer><strong>[Bia Iancovski]</strong><span>Avaliação no Google</span></footer>
+              <p>"Já fiz 2 mentorias com a Fernanda Schultz, e já perdi a conta de quantas pessoas indiquei. Desejo que todo o ser humano que visualizar essa mensagem, possa passar pela experiência de sentar no sofá do Instituto e ter sua vida transformada, é simplesmente mágico! Já passaram 5 anos e eu admiro cada vez mais. Levo a gratidão eterna por Deus ter colocado a Fe na minha vida!"</p>
+              <footer><strong>Bia Iancovski</strong><span>Avaliação no Google</span></footer>
             </blockquote>
 
-            <!-- ▼▼▼ AVALIAÇÃO 5 ▼▼▼ (duplique este bloco para adicionar mais) -->
             <blockquote class="testimonial glass-dark" aria-roledescription="slide">
               <span class="testimonial__stars" aria-hidden="true">★★★★★</span>
-              <p>“Quero deixa aqui registrado que a um mês atrás eu dei o primeiro passo para mudar, viver um sonho que me tira da minha zona de conforto. Então eu escolhi a Fernanda para me ajudar, tirar tudo do papel e transformar em realidade. Hoje posso dizer que eu não sou a Natasha de um mês atrás eu tenho só gratidão por tudo. Só quem vive sabe! Você é inspiradora e um exemplo de mulher!! Te amo e não largo mais! 😍❤️ Você é luz! ✨”</p>
-              <footer><strong>[Natasha Gonçalves]</strong><span>Avaliação no Google</span></footer>
+              <p>"Quero deixa aqui registrado que a um mês atrás eu dei o primeiro passo para mudar, viver um sonho que me tira da minha zona de conforto. Então eu escolhi a Fernanda para me ajudar, tirar tudo do papel e transformar em realidade. Hoje posso dizer que eu não sou a Natasha de um mês atrás eu tenho só gratidão por tudo. Só quem vive sabe! Você é inspiradora e um exemplo de mulher!! Te amo e não largo mais! 😍❤️ Você é luz! ✨"</p>
+              <footer><strong>Natasha Gonçalves</strong><span>Avaliação no Google</span></footer>
             </blockquote>
 
           </div>
@@ -447,8 +452,9 @@
         </div>
 
         <div class="contents__grid">
+          <!-- ✅ ALTERAÇÃO #3 — Imagens reais nos cards de conteúdo -->
           <article class="content-card reveal">
-            <div class="content-card__media content-card__media--a" aria-hidden="true"></div>
+            <div class="content-card__media content-card__media--a" aria-hidden="true" role="img" aria-label="Autoconhecimento"></div>
             <div class="content-card__body">
               <span class="content-card__tag">Autoconhecimento</span>
               <h3>Por que repetimos padrões — e como interromper o ciclo</h3>
@@ -458,7 +464,7 @@
           </article>
 
           <article class="content-card reveal">
-            <div class="content-card__media content-card__media--b" aria-hidden="true"></div>
+            <div class="content-card__media content-card__media--b" aria-hidden="true" role="img" aria-label="Carreira e Liderança"></div>
             <div class="content-card__body">
               <span class="content-card__tag">Carreira</span>
               <h3>Liderar pessoas começa por liderar a si mesmo</h3>
@@ -468,7 +474,7 @@
           </article>
 
           <article class="content-card reveal">
-            <div class="content-card__media content-card__media--c" aria-hidden="true"></div>
+            <div class="content-card__media content-card__media--c" aria-hidden="true" role="img" aria-label="Consciência e Essência"></div>
             <div class="content-card__body">
               <span class="content-card__tag">Consciência</span>
               <h3>Menos ruído, mais essência: um guia prático</h3>
@@ -499,10 +505,90 @@
             Preencha o formulário e retornaremos para entender seu momento e indicar o melhor
             caminho — sem compromisso, com total sigilo.
           </p>
+
+          <!-- ✅ ALTERAÇÃO #4 — Canais de contato expandidos com Instagram, Telefone e WhatsApp -->
           <ul class="contact__channels reveal">
-            <li><strong>Atendimento</strong><span>Presencial e on-line para todo o Brasil</span></li>
-            <li><strong>E-mail</strong><span>contato@institutoschultz.com</span></li>
-            <li><strong>Horário</strong><span>Segunda a sexta, mediante agendamento</span></li>
+            <li>
+              <span class="contact__channel-icon" aria-hidden="true">
+                <!-- Ícone Localização / Atendimento -->
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/>
+                </svg>
+              </span>
+              <div>
+                <strong>Atendimento</strong>
+                <span>Presencial e on-line — Brasil, EUA, Portugal e Espanha</span>
+              </div>
+            </li>
+
+            <li>
+              <span class="contact__channel-icon" aria-hidden="true">
+                <!-- Ícone E-mail -->
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
+                </svg>
+              </span>
+              <div>
+                <strong>E-mail</strong>
+                <a href="mailto:contato@institutoschultz.com" class="contact__channel-link">contato@institutoschultz.com</a>
+              </div>
+            </li>
+
+            <li>
+              <span class="contact__channel-icon" aria-hidden="true">
+                <!-- Ícone Telefone -->
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16v.92z"/>
+                </svg>
+              </span>
+              <div>
+                <strong>Telefone</strong>
+                <a href="tel:+5551992280699" class="contact__channel-link">(51) 99228-0699</a>
+              </div>
+            </li>
+
+            <li>
+              <span class="contact__channel-icon contact__channel-icon--whatsapp" aria-hidden="true">
+                <!-- Ícone WhatsApp -->
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                </svg>
+              </span>
+              <div>
+                <strong>WhatsApp</strong>
+                <a href="https://wa.me/5551992280699" target="_blank" rel="noopener noreferrer" class="contact__channel-link contact__channel-link--whatsapp">
+                  Iniciar conversa →
+                </a>
+              </div>
+            </li>
+
+            <li>
+              <span class="contact__channel-icon contact__channel-icon--instagram" aria-hidden="true">
+                <!-- Ícone Instagram -->
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </span>
+              <div>
+                <strong>Instagram</strong>
+                <a href="https://www.instagram.com/institutoschultz/" target="_blank" rel="noopener noreferrer" class="contact__channel-link contact__channel-link--instagram">
+                  @institutoschultz
+                </a>
+              </div>
+            </li>
+
+            <li>
+              <span class="contact__channel-icon" aria-hidden="true">
+                <!-- Ícone Horário -->
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </span>
+              <div>
+                <strong>Horário</strong>
+                <span>Segunda a sexta, mediante agendamento</span>
+              </div>
+            </li>
           </ul>
         </div>
 
@@ -573,8 +659,14 @@
         <h3>Contato</h3>
         <ul>
           <li><a href="mailto:contato@institutoschultz.com">contato@institutoschultz.com</a></li>
+          <li><a href="tel:+5551992280699">(51) 99228-0699</a></li>
+          <li>
+            <a href="https://wa.me/5551992280699" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/institutoschultz/" target="_blank" rel="noopener noreferrer">@institutoschultz</a>
+          </li>
           <li><a href="#contato">Formulário de contato</a></li>
-          <li>Atendimento on-line: todo o Brasil</li>
         </ul>
       </div>
     </div>
