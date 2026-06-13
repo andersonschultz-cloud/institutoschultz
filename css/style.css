@@ -1424,4 +1424,196 @@ p + p { margin-top: 1rem; }
   .contact__channel-link--instagram {
     font-size: .9rem;
   }
+   /* ============================================================
+   CONTATO — Reorganização completa do layout
+   ============================================================ */
+
+/* Grade principal: alinha topo das duas colunas */
+.contact__grid {
+  align-items: start;
+}
+
+/* Lead text compacto */
+.contact__lead {
+  font-size: .95rem;
+  line-height: 1.6;
+  opacity: .8;
+  margin-bottom: 1.25rem;
+}
+
+/* ----------------------------------------------------------
+   Cards compactos de informação
+   ---------------------------------------------------------- */
+.contact__cards {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact__card {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .7rem .9rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .08);
+  transition: background .2s, border-color .2s;
+}
+
+.contact__card:hover {
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .14);
+}
+
+/* Ícone do card */
+.contact__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 8px;
+  background: rgba(var(--clr-accent-rgb, 37, 99, 235), .15);
+  color: var(--clr-accent, #2563EB);
+  margin-top: .05rem;
+}
+
+.contact__card-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Conteúdo textual do card */
+.contact__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.contact__card-body strong {
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  opacity: .5;
+  line-height: 1;
+}
+
+.contact__card-body span {
+  font-size: .88rem;
+  line-height: 1.5;
+  opacity: .9;
+}
+
+/* Links inline dentro dos cards */
+.contact__inline-link {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+
+.contact__inline-link:hover {
+  opacity: .65;
+  text-decoration: underline;
+}
+
+/* ----------------------------------------------------------
+   Canais rápidos — linha horizontal
+   ---------------------------------------------------------- */
+.contact__quick {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;  /* quebra automaticamente em mobile */
+}
+
+/* Botão base */
+.contact__quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .55rem 1rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform .2s, box-shadow .2s, opacity .2s, background .2s;
+  white-space: nowrap;
+}
+
+.contact__quick-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+.contact__quick-btn:active {
+  transform: translateY(0);
+}
+
+/* WhatsApp */
+.contact__quick-btn--whatsapp {
+  background: #25D366;
+  color: #fff;
+  border-color: #25D366;
+}
+
+.contact__quick-btn--whatsapp:hover {
+  background: #1ebe5d;
+  border-color: #1ebe5d;
+}
+
+/* Telefone */
+.contact__quick-btn--phone {
+  background: rgba(255,255,255,.07);
+  color: inherit;
+  border-color: rgba(255,255,255,.15);
+}
+
+.contact__quick-btn--phone:hover {
+  background: rgba(255,255,255,.13);
+  border-color: rgba(255,255,255,.28);
+}
+
+/* Instagram */
+.contact__quick-btn--instagram {
+  background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #515bd4 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+.contact__quick-btn--instagram:hover {
+  opacity: .88;
+}
+
+/* ----------------------------------------------------------
+   Responsividade
+   ---------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Em mobile a coluna esquerda vai acima do formulário */
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__quick {
+    gap: .5rem;
+  }
+
+  .contact__quick-btn {
+    flex: 1 1 calc(50% - .3rem); /* 2 botões por linha em mobile */
+    justify-content: center;
+    padding: .55rem .5rem;
+    font-size: .8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .contact__quick-btn {
+    flex: 1 1 100%; /* 1 botão por linha em telas muito pequenas */
+  }
+}
+
 }
