@@ -59,7 +59,21 @@ body {
   overflow-x: hidden;
 }
 
-img, svg, canvas { display: block; max-width: 100%; }
+/* ============================================================
+   FIX CRÍTICO — SVG nunca herda width: 100% do reset global
+   Corrige ícones gigantes no Chrome/Edge/Firefox desktop
+   ============================================================ */
+img, canvas { display: block; max-width: 100%; }
+
+svg {
+  display: inline-block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
 ul[class], ol[class] { list-style: none; padding: 0; }
 a { color: inherit; }
 
@@ -147,6 +161,11 @@ p + p { margin-top: 1rem; }
   cursor: pointer;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s;
   will-change: transform;
+}
+.btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
@@ -391,6 +410,7 @@ p + p { margin-top: 1rem; }
   border-radius: 50%;
   background: var(--grad-brand);
   box-shadow: 0 0 0 4px rgba(43, 175, 201, 0.18);
+  flex-shrink: 0;
 }
 
 .hero__scrollhint {
@@ -463,6 +483,37 @@ p + p { margin-top: 1rem; }
   color: var(--ink-soft);
   line-height: 1.4;
 }
+
+/* ----------------------------------------------------------
+   Stat internacional com bandeiras — tamanho fixo cross-device
+   ---------------------------------------------------------- */
+.stat--international {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.stat__flags {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  line-height: 1;
+}
+
+/* Bandeira: emoji com tamanho fixo — igual em mobile e desktop */
+.stat__flag {
+  font-size: 1.3rem;        /* tamanho fixo, não escala com viewport */
+  line-height: 1;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  transition: transform 0.2s ease;
+}
+.stat__flag:hover { transform: scale(1.15); }
 
 @media (min-width: 760px) {
   .stats__grid { grid-template-columns: repeat(4, 1fr); }
@@ -620,15 +671,25 @@ p + p { margin-top: 1rem; }
   place-items: center;
   background: linear-gradient(135deg, rgba(43,175,201,0.14), rgba(111,216,230,0.22));
   margin-bottom: 1.2rem;
+  overflow: hidden;
+  flex-shrink: 0;
 }
+
+/* SVG dentro do ícone de área: dimensões explícitas e rígidas */
 .area-card__icon svg {
-  width: 26px;
-  height: 26px;
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px;
+  max-width: 26px;
+  min-height: 26px;
+  max-height: 26px;
   fill: none;
   stroke: var(--teal-600);
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
+  display: block;
+  flex-shrink: 0;
 }
 
 .area-card h3 { font-size: 1.18rem; margin-bottom: 0.55rem; }
@@ -851,6 +912,14 @@ p + p { margin-top: 1rem; }
   font-size: 1.1rem;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s var(--ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider__btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 .slider__btn:hover { background: rgba(255, 255, 255, 0.15); transform: scale(1.06); }
 
@@ -892,10 +961,33 @@ p + p { margin-top: 1rem; }
 }
 .content-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-soft); }
 
-.content-card__media { height: 160px; }
-.content-card__media--a { background: linear-gradient(125deg, var(--navy-700), var(--teal-600) 60%, var(--cyan-500)); }
-.content-card__media--b { background: linear-gradient(125deg, var(--teal-700), var(--cyan-500) 65%, var(--cyan-300)); }
-.content-card__media--c { background: linear-gradient(125deg, var(--navy-900), var(--navy-700) 50%, var(--teal-600)); }
+.content-card__media {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.content-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10,20,40,0.30) 0%, rgba(10,20,40,0.55) 100%);
+}
+
+.content-card__media--a {
+  background-image: url('../assets/images/Autoconhecimento.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.content-card__media--b {
+  background-image: url('../assets/images/Carreira.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.content-card__media--c {
+  background-image: url('../assets/images/Consciencia.jpg');
+  background-size: cover;
+  background-position: center;
+}
 
 .content-card__body { padding: 1.6rem 1.6rem 1.8rem; }
 
@@ -956,23 +1048,300 @@ p + p { margin-top: 1rem; }
   align-items: start;
 }
 
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .contact__info p { color: var(--ink-soft); }
 
+/* Lead text */
+.contact__lead {
+  font-size: .95rem;
+  line-height: 1.6;
+  opacity: .8;
+  margin-bottom: .25rem;
+}
+
+/* ----------------------------------------------------------
+   Cards compactos de informação
+   ---------------------------------------------------------- */
+.contact__cards {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact__card {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .7rem .9rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .08);
+  transition: background .2s, border-color .2s;
+}
+
+.contact__card:hover {
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .14);
+}
+
+/* Ícone do card — dimensões rígidas, nunca cresce */
+.contact__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  max-width: 34px !important;
+  min-height: 34px !important;
+  max-height: 34px !important;
+  border-radius: 8px;
+  background: rgba(37, 99, 235, .15);
+  color: #2563EB;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-top: .05rem;
+}
+
+/* SVG dentro do card — tamanho fixo absoluto */
+.contact__card-icon svg {
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  max-width: 16px !important;
+  min-height: 16px !important;
+  max-height: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Conteúdo textual do card */
+.contact__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.contact__card-body strong {
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  opacity: .5;
+  line-height: 1;
+}
+
+.contact__card-body span {
+  font-size: .88rem;
+  line-height: 1.5;
+  opacity: .9;
+}
+
+/* Links inline dentro dos cards */
+.contact__inline-link {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.contact__inline-link:hover {
+  opacity: .65;
+  text-decoration: underline;
+}
+
+/* ----------------------------------------------------------
+   Canais rápidos — linha horizontal, ícones controlados
+   ---------------------------------------------------------- */
+.contact__quick {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: .6rem !important;
+  align-items: center !important;
+  width: auto !important;
+  height: auto !important;
+  margin-top: 1.5rem;
+}
+
+/* Botão base — nunca expande, alinha em linha */
+.contact__quick-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .45rem !important;
+  padding: .55rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: .82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  height: auto !important;
+  width: auto !important;
+  flex: 0 0 auto !important;
+  transition: transform .2s, box-shadow .2s, opacity .2s, background .2s;
+}
+
+.contact__quick-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+}
+
+.contact__quick-btn:active { transform: translateY(0); }
+
+/* SVG dentro dos botões rápidos — tamanho fixo absoluto */
+.contact__quick-btn svg {
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  min-height: 20px !important;
+  max-height: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+/* WhatsApp */
+.contact__quick-btn--whatsapp {
+  background: #25D366 !important;
+  color: #fff !important;
+  border-color: #25D366 !important;
+}
+.contact__quick-btn--whatsapp:hover {
+  background: #1ebe5d !important;
+  border-color: #1ebe5d !important;
+}
+
+/* Telefone */
+.contact__quick-btn--phone {
+  background: rgba(255, 255, 255, .07) !important;
+  color: inherit !important;
+  border-color: rgba(255, 255, 255, .15) !important;
+}
+.contact__quick-btn--phone:hover {
+  background: rgba(255, 255, 255, .13) !important;
+  border-color: rgba(255, 255, 255, .28) !important;
+}
+
+/* Instagram */
+.contact__quick-btn--instagram {
+  background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #515bd4 100%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+.contact__quick-btn--instagram:hover { opacity: .88; }
+
+/* ----------------------------------------------------------
+   Canais de contato (lista legada — mantida para compatibilidade)
+   ---------------------------------------------------------- */
 .contact__channels {
   margin-top: 2rem;
   display: grid;
   gap: 1.1rem;
 }
+
 .contact__channels li {
   display: flex;
-  flex-direction: column;
-  padding-left: 1.1rem;
-  border-left: 3px solid;
-  border-image: var(--grad-brand) 1;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+  transition: background .2s;
 }
-.contact__channels strong { font-family: var(--font-display); font-size: 0.92rem; color: var(--navy-700); }
-.contact__channels span { font-size: 0.94rem; color: var(--ink-soft); }
+.contact__channels li:last-child { border-bottom: none; }
 
+/* Wrapper do ícone — legado */
+.contact__channel-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  max-width: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .06);
+  color: #2563EB;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: background .25s, color .25s, transform .25s;
+}
+
+/* SVG dentro de channel-icon — controle rígido */
+.contact__channel-icon svg {
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  min-height: 20px !important;
+  max-height: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+.contact__channels li:hover .contact__channel-icon {
+  background: #2563EB;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.contact__channel-icon--whatsapp { color: #25D366; }
+.contact__channels li:hover .contact__channel-icon--whatsapp {
+  background: #25D366;
+  color: #fff;
+}
+
+.contact__channel-icon--instagram { color: #E1306C; }
+.contact__channels li:hover .contact__channel-icon--instagram {
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  color: #fff;
+  border: none;
+}
+
+.contact__channels li > div {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+
+.contact__channels li strong {
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  opacity: .55;
+  line-height: 1;
+}
+
+.contact__channels li span,
+.contact__channels li a {
+  font-size: .95rem;
+  line-height: 1.4;
+}
+
+.contact__channel-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color .2s, opacity .2s;
+  word-break: break-all;
+}
+.contact__channel-link:hover { opacity: .75; text-decoration: underline; }
+
+.contact__channel-link--whatsapp { color: #25D366; font-weight: 600; }
+.contact__channel-link--whatsapp:hover { opacity: 1; color: #1da851; }
+
+.contact__channel-link--instagram { color: #E1306C; font-weight: 600; }
+.contact__channel-link--instagram:hover { opacity: 1; color: #c13584; }
+
+/* Formulário */
 .contact__form { padding: clamp(1.6rem, 4vw, 2.4rem); }
 
 .form__field { margin-bottom: 1.2rem; }
@@ -1029,6 +1398,28 @@ p + p { margin-top: 1rem; }
 
 @media (min-width: 940px) {
   .contact__grid { grid-template-columns: 0.9fr 1.1fr; gap: 4.5rem; }
+}
+
+/* Responsividade contato mobile */
+@media (max-width: 768px) {
+  .contact__grid { grid-template-columns: 1fr; }
+
+  .contact__quick {
+    gap: .5rem !important;
+  }
+
+  .contact__quick-btn {
+    flex: 1 1 calc(50% - .3rem) !important;
+    justify-content: center !important;
+    padding: .55rem .5rem !important;
+    font-size: .8rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .contact__quick-btn {
+    flex: 1 1 100% !important;
+  }
 }
 
 /* ============ Footer ============ */
@@ -1103,6 +1494,7 @@ p + p { margin-top: 1rem; }
   .reveal { opacity: 1; transform: none; }
   .hero__canvas { display: none; }
 }
+
 /* ============ Google Reviews ============ */
 .google-badge {
   display: inline-flex;
@@ -1164,6 +1556,8 @@ p + p { margin-top: 1rem; }
   object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid rgba(255, 255, 255, 0.12);
+  display: block;         /* garante que img não herde svg: inline-block */
+  max-width: none;        /* imagem da galeria pode ser maior que 100% do SVG reset */
 }
 
 @keyframes galleryScroll {
@@ -1175,23 +1569,16 @@ p + p { margin-top: 1rem; }
   .gallery__track { animation: none; }
   .gallery { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
 }
-/* ============================================================
-   ADIÇÕES — Instituto Schultz
-   Cole no final do style.css existente
-   ============================================================ */
 
-/* ----------------------------------------------------------
-   #1 — Formação acadêmica: remove marcador preto duplicado
-   ---------------------------------------------------------- */
+/* ============ Formação acadêmica ============ */
 .credentials__list {
-  list-style: none;       /* remove o bullet preto nativo */
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Mantém/garante a bolinha azul personalizada já existente */
 .credentials__list li {
-  list-style: none;       /* reforça para casos de herança */
+  list-style: none;
   position: relative;
   padding-left: 1.25rem;
   margin-bottom: 0.45rem;
@@ -1204,416 +1591,9 @@ p + p { margin-top: 1rem; }
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--clr-accent, #2563EB); /* azul do tema — ajuste se necessário */
+  background: #2563EB;
   position: absolute;
   left: 0;
   top: 0.42em;
   flex-shrink: 0;
-}
-
-/* ----------------------------------------------------------
-   #2 — Stat internacional com bandeiras
-   ---------------------------------------------------------- */
-.stat--international {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.stat__flags {
-  display: flex;
-  gap: 0.4rem;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.stat__flag {
-  font-size: 1.75rem;
-  line-height: 1;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,.25));
-  transition: transform .2s ease;
-}
-
-.stat__flag:hover {
-  transform: scale(1.15);
-}
-
-/* ----------------------------------------------------------
-   #3 — Cards de conteúdo com imagens reais
-   ---------------------------------------------------------- */
-
-/* Substitui os gradientes decorativos pelas imagens reais */
-.content-card__media--a {
-  background-image: url('../assets/images/Autoconhecimento.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.content-card__media--b {
-  background-image: url('../assets/images/Carreira.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.content-card__media--c {
-  background-image: url('../assets/images/Consciencia.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-/*
-  Garante overlay escuro sobre as imagens para manter
-  legibilidade caso o CSS original use pseudo-elemento.
-  Se o seu style.css já tiver ::after no .content-card__media,
-  este bloco reforça sem conflito.
-*/
-.content-card__media {
-  position: relative;
-}
-
-.content-card__media::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 20, 40, 0.30) 0%,
-    rgba(10, 20, 40, 0.55) 100%
-  );
-  border-radius: inherit;
-}
-
-/* ----------------------------------------------------------
-   #4 & #5 — Canais de contato: ícones + novos links
-   ---------------------------------------------------------- */
-
-/* Layout de cada item de canal */
-.contact__channels li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(255,255,255,.07);
-  transition: background .2s;
-}
-
-.contact__channels li:last-child {
-  border-bottom: none;
-}
-
-/* Wrapper do ícone */
-.contact__channel-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.06);
-  color: var(--clr-accent, #2563EB);
-  transition: background .25s, color .25s, transform .25s;
-}
-
-.contact__channels li:hover .contact__channel-icon {
-  background: var(--clr-accent, #2563EB);
-  color: #fff;
-  transform: scale(1.08);
-}
-
-/* WhatsApp — cor própria no hover */
-.contact__channel-icon--whatsapp {
-  color: #25D366;
-}
-
-.contact__channels li:hover .contact__channel-icon--whatsapp {
-  background: #25D366;
-  color: #fff;
-}
-
-/* Instagram — gradiente no hover */
-.contact__channel-icon--instagram {
-  color: #E1306C;
-}
-
-.contact__channels li:hover .contact__channel-icon--instagram {
-  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
-  color: #fff;
-  border: none;
-}
-
-/* Texto dentro do canal */
-.contact__channels li > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.contact__channels li strong {
-  font-size: .8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  opacity: .55;
-  line-height: 1;
-}
-
-.contact__channels li span,
-.contact__channels li a {
-  font-size: .95rem;
-  line-height: 1.4;
-}
-
-/* Links dos canais */
-.contact__channel-link {
-  color: inherit;
-  text-decoration: none;
-  transition: color .2s, opacity .2s;
-  word-break: break-all;
-}
-
-.contact__channel-link:hover {
-  opacity: .75;
-  text-decoration: underline;
-}
-
-/* WhatsApp — destaque especial no link */
-.contact__channel-link--whatsapp {
-  color: #25D366;
-  font-weight: 600;
-}
-
-.contact__channel-link--whatsapp:hover {
-  opacity: 1;
-  color: #1da851;
-}
-
-/* Instagram — destaque especial no link */
-.contact__channel-link--instagram {
-  color: #E1306C;
-  font-weight: 600;
-}
-
-.contact__channel-link--instagram:hover {
-  opacity: 1;
-  color: #c13584;
-}
-
-/* ----------------------------------------------------------
-   Responsividade dos novos elementos
-   ---------------------------------------------------------- */
-@media (max-width: 600px) {
-  .stat__flag {
-    font-size: 1.4rem;
-  }
-
-  .contact__channel-icon {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-  }
-
-  .contact__channels li {
-    gap: 0.65rem;
-    padding: 0.6rem 0;
-  }
-
-  .contact__channel-link--whatsapp,
-  .contact__channel-link--instagram {
-    font-size: .9rem;
-  }
-   /* ============================================================
-   CONTATO — Reorganização completa do layout
-   ============================================================ */
-
-/* Grade principal: alinha topo das duas colunas */
-.contact__grid {
-  align-items: start;
-}
-
-/* Lead text compacto */
-.contact__lead {
-  font-size: .95rem;
-  line-height: 1.6;
-  opacity: .8;
-  margin-bottom: 1.25rem;
-}
-
-/* ----------------------------------------------------------
-   Cards compactos de informação
-   ---------------------------------------------------------- */
-.contact__cards {
-  display: flex;
-  flex-direction: column;
-  gap: .55rem;
-  margin-bottom: 1.25rem;
-}
-
-.contact__card {
-  display: flex;
-  align-items: flex-start;
-  gap: .75rem;
-  padding: .7rem .9rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, .04);
-  border: 1px solid rgba(255, 255, 255, .08);
-  transition: background .2s, border-color .2s;
-}
-
-.contact__card:hover {
-  background: rgba(255, 255, 255, .07);
-  border-color: rgba(255, 255, 255, .14);
-}
-
-/* Ícone do card */
-.contact__card-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  min-width: 34px;
-  border-radius: 8px;
-  background: rgba(var(--clr-accent-rgb, 37, 99, 235), .15);
-  color: var(--clr-accent, #2563EB);
-  margin-top: .05rem;
-}
-
-.contact__card-icon svg {
-  width: 16px;
-  height: 16px;
-}
-
-/* Conteúdo textual do card */
-.contact__card-body {
-  display: flex;
-  flex-direction: column;
-  gap: .2rem;
-}
-
-.contact__card-body strong {
-  font-size: .72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  opacity: .5;
-  line-height: 1;
-}
-
-.contact__card-body span {
-  font-size: .88rem;
-  line-height: 1.5;
-  opacity: .9;
-}
-
-/* Links inline dentro dos cards */
-.contact__inline-link {
-  color: inherit;
-  text-decoration: none;
-  transition: opacity .2s;
-}
-
-.contact__inline-link:hover {
-  opacity: .65;
-  text-decoration: underline;
-}
-
-/* ----------------------------------------------------------
-   Canais rápidos — linha horizontal
-   ---------------------------------------------------------- */
-.contact__quick {
-  display: flex;
-  gap: .6rem;
-  flex-wrap: wrap;  /* quebra automaticamente em mobile */
-}
-
-/* Botão base */
-.contact__quick-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  padding: .55rem 1rem;
-  border-radius: 8px;
-  font-size: .82rem;
-  font-weight: 600;
-  letter-spacing: .02em;
-  text-decoration: none;
-  border: 1px solid transparent;
-  transition: transform .2s, box-shadow .2s, opacity .2s, background .2s;
-  white-space: nowrap;
-}
-
-.contact__quick-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.25);
-}
-
-.contact__quick-btn:active {
-  transform: translateY(0);
-}
-
-/* WhatsApp */
-.contact__quick-btn--whatsapp {
-  background: #25D366;
-  color: #fff;
-  border-color: #25D366;
-}
-
-.contact__quick-btn--whatsapp:hover {
-  background: #1ebe5d;
-  border-color: #1ebe5d;
-}
-
-/* Telefone */
-.contact__quick-btn--phone {
-  background: rgba(255,255,255,.07);
-  color: inherit;
-  border-color: rgba(255,255,255,.15);
-}
-
-.contact__quick-btn--phone:hover {
-  background: rgba(255,255,255,.13);
-  border-color: rgba(255,255,255,.28);
-}
-
-/* Instagram */
-.contact__quick-btn--instagram {
-  background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #515bd4 100%);
-  color: #fff;
-  border-color: transparent;
-}
-
-.contact__quick-btn--instagram:hover {
-  opacity: .88;
-}
-
-/* ----------------------------------------------------------
-   Responsividade
-   ---------------------------------------------------------- */
-@media (max-width: 768px) {
-  /* Em mobile a coluna esquerda vai acima do formulário */
-  .contact__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact__quick {
-    gap: .5rem;
-  }
-
-  .contact__quick-btn {
-    flex: 1 1 calc(50% - .3rem); /* 2 botões por linha em mobile */
-    justify-content: center;
-    padding: .55rem .5rem;
-    font-size: .8rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .contact__quick-btn {
-    flex: 1 1 100%; /* 1 botão por linha em telas muito pequenas */
-  }
-}
-
 }
